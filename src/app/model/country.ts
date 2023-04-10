@@ -8,13 +8,13 @@ export interface Country {
   independent?: boolean;
   status?: string;
   unMember?: boolean;
-  currencies?: Currency;
+  currencies?: Currencies;
   idd?: IDD;
   capital?: string[];
   altSpellings?: string[];
   region?: string;
   subregion?: string;
-  languages?: Language;
+  languages?: Languages;
   translations?: Translation;
   latlng?: number[];
   landlocked?: boolean;
@@ -49,7 +49,7 @@ export interface CountryNativeName {
     }
 }
 
-export interface Currency {
+export interface Currencies {
     [ currencyKey: string]: {
         name: string;
         symbol: string;
@@ -61,7 +61,7 @@ export interface IDD {
     suffixes: string[];
 }
 
-export interface Language {
+export interface Languages {
     [key: string]: string;
 }
 

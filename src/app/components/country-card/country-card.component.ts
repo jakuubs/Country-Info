@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Country } from 'src/app/model/country';
 
 @Component({
@@ -11,7 +11,15 @@ export class CountryCardComponent implements OnChanges {
   @Input()
   public country?: Country;
 
-  public ngOnChanges(): void {
-    console.log(this.country);
+  public formattedLanguages: string = '';
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['country']?.currentValue !== changes['country'].previousValue) {
+      this.formatLanguages();
+    };
+  }
+
+  private formatLanguages(): void {
+    this.formattedLanguages = Object.values(this.country?.languages || {}).join(', ').trimEnd();
   }
 }

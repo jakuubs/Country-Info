@@ -11,9 +11,11 @@ import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CountryCardComponent } from './components/country-card/country-card.component';
 import { CountriesComponent } from './components/countries/countries.component';
+import { CountryInfoDirective } from './directives/country-info.directive';
+import { CountryCardDirective } from './directives/country-card.directive';
 
 @NgModule({
-  declarations: [AppComponent, SearchbarComponent, CountryCardComponent, CountriesComponent],
+  declarations: [AppComponent, SearchbarComponent, CountryCardComponent, CountriesComponent, CountryInfoDirective, CountryCardDirective],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

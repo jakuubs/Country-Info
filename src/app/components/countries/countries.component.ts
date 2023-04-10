@@ -14,13 +14,14 @@ export class CountriesComponent implements OnInit, OnDestroy {
 
   private countries$: Subscription = new Subscription();
 
-  private readonly filters: string[] = ['name', 'region', 'flags'];
+  private readonly filters: string[] = ['name', 'region', 'flags', 'languages', 'population'];
 
   constructor(private readonly countryService: CountryService) {}
 
   public ngOnInit(): void {
     this.countries$ = this.countryService.getAllCountries(this.filters).subscribe(countries => {
       this.countries = countries;
+      console.log(countries);
     });
   }
 
