@@ -1,0 +1,19 @@
+<mat-card class="country-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{ country?.name?.common }}</mat-card-title>
+    <mat-card-subtitle>{{ country?.capital }}</mat-card-subtitle>
+  </mat-card-header>
+  <img
+    mat-card-image
+    src="{{country?.flags?.png || country?.flags?.svg}}"
+    alt="{{country?.flags?.alt}}"
+  />
+  <mat-card-content>
+    <p>
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>Show more info</button>
+  </mat-card-actions>
+</mat-card>
