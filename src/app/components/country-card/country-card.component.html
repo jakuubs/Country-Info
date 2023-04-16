@@ -13,7 +13,7 @@
     <ul appCountryInfo>
       <li><span>Region: </span>{{country?.region}}</li>
       <li><span>Languages: </span>{{formattedLanguages}}</li>
-      <li><span>Population: </span>{{country?.population}}</li>
+      <li><span>Population: </span>{{country?.population | number}}</li>
     </ul>
   </mat-card-content>
   <mat-card-actions>

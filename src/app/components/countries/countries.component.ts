@@ -1,5 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, Input, OnDestroy, OnInit, OnChanges } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 import { Country } from 'src/app/model/country';
 import { CountryService } from 'src/app/services/country.service';
 
@@ -8,24 +8,39 @@ import { CountryService } from 'src/app/services/country.service';
   templateUrl: './countries.component.html',
   styleUrls: ['./countries.component.scss'],
 })
-export class CountriesComponent implements OnInit, OnDestroy {
+export class CountriesComponent implements OnInit, OnChanges, OnDestroy {
+
+  @Input()
+  public input?: string;
   
   public countries: Country[] = [];
 
-  private countries$: Subscription = new Subscription();
-
-  private readonly filters: string[] = ['name', 'region', 'flags', 'languages', 'population'];
+  private readonly destroy$: Subject<boolean> = new Subject();
 
   constructor(private readonly countryService: CountryService) {}
 
   public ngOnInit(): void {
-    this.countries$ = this.countryService.getAllCountries(this.filters).subscribe(countries => {
-      this.countries = countries;
-      console.log(countries);
-    });
+    this.getAllCountries();
+  }
+
+  public ngOnChanges(): void {
+    if (this.input) {
+      this.countryService.getCountriesByName(this.input).pipe(takeUntil(this.destroy$)).subscribe(countries => {
+        this.countries = countries;
+      });
+      return;
+    }
+    this.getAllCountries();
   }
 
   public ngOnDestroy(): void {
-    this.countries$.unsubscribe();
+    this.destroy$.next(true);
+    this.destroy$.complete();
+  }
+
+  private getAllCountries(): void {
+    this.countryService.getAllCountries().pipe(takeUntil(this.destroy$)).subscribe(countries => {
+      this.countries = countries;
+    });
   }
 }

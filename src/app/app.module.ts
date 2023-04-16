@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+import { CountryService } from './services/country.service';
+import { InjectionToken, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -14,8 +15,24 @@ import { CountriesComponent } from './components/countries/countries.component';
 import { CountryInfoDirective } from './directives/country-info.directive';
 import { CountryCardDirective } from './directives/country-card.directive';
 
+export const DEFAULT_FILTERS = new InjectionToken<string>('defaultFilters');
+const defaultFilters: string[] = [
+  'name',
+  'region',
+  'flags',
+  'languages',
+  'population',
+];
+
 @NgModule({
-  declarations: [AppComponent, SearchbarComponent, CountryCardComponent, CountriesComponent, CountryInfoDirective, CountryCardDirective],
+  declarations: [
+    AppComponent,
+    SearchbarComponent,
+    CountryCardComponent,
+    CountriesComponent,
+    CountryInfoDirective,
+    CountryCardDirective,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -24,7 +41,10 @@ import { CountryCardDirective } from './directives/country-card.directive';
     MatIconModule,
     MatInputModule,
   ],
-  providers: [],
+  providers: [
+    CountryService,
+    { provide: DEFAULT_FILTERS, useValue: defaultFilters },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,4 +1,4 @@
 <div class="app-container">
-  <app-searchbar></app-searchbar>
-  <app-countries></app-countries>
+  <app-searchbar (countries$)="getSearchValue($event)"></app-searchbar>
+  <app-countries [input]="input"></app-countries>
 </div>
