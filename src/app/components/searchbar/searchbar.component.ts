@@ -12,6 +12,7 @@ import {
   Output,
   EventEmitter,
   OnDestroy,
+  AfterViewChecked,
 } from '@angular/core';
 
 @Component({
@@ -19,7 +20,7 @@ import {
   templateUrl: './searchbar.component.html',
   styleUrls: ['./searchbar.component.scss'],
 })
-export class SearchbarComponent implements AfterViewInit, OnDestroy {
+export class SearchbarComponent implements AfterViewInit, AfterViewChecked, OnDestroy {
   @ViewChild('countrySearch')
   public countrySearch!: ElementRef<HTMLInputElement>;
 
@@ -37,6 +38,11 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
       .subscribe((countryInput) => {
         this.countries$.emit((countryInput.target as HTMLInputElement).value);
       });
+    console.log('AfterViewInit - adding event subscription after view initialized in SearchBarComponent');
+  }
+
+  public ngAfterViewChecked(): void {
+    console.log('AfterViewChecked - view checked, keyup subscription created in SearchBarComponent');
   }
 
   public ngOnDestroy(): void {

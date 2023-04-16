@@ -10,13 +10,6 @@
     class="country-card-flag"
   />
   <mat-card-content>
-    <ul appCountryInfo>
-      <li><span>Region: </span>{{country?.region}}</li>
-      <li><span>Languages: </span>{{formattedLanguages}}</li>
-      <li><span>Population: </span>{{country?.population | number}}</li>
-    </ul>
+    <ng-content></ng-content>
   </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>Show more info</button>
-  </mat-card-actions>
 </mat-card>

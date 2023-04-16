@@ -21,6 +21,7 @@ export class CountriesComponent implements OnInit, OnChanges, OnDestroy {
 
   public ngOnInit(): void {
     this.getAllCountries();
+    console.log('OnInit - initializing CountriesComponent');
   }
 
   public ngOnChanges(): void {
@@ -31,11 +32,13 @@ export class CountriesComponent implements OnInit, OnChanges, OnDestroy {
       return;
     }
     this.getAllCountries();
+    console.log('OnChanges - checking input changes in CountriesComponent');
   }
 
   public ngOnDestroy(): void {
     this.destroy$.next(true);
     this.destroy$.complete();
+    console.log('OnDestroy - cleaning subscriptions in CountriesComponent');
   }
 
   private getAllCountries(): void {

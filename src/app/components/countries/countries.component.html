@@ -1,3 +1,9 @@
 <div class="countries-grid">
-    <app-country-card *ngFor="let country of countries" [country]="country"></app-country-card>
+  <app-country-card *ngFor="let country of countries" [country]="country"
+    ><ul appCountryInfo>
+      <li><span>Region: </span>{{ country?.region }}</li>
+      <li><span>Languages: </span>{{ country?.languages | languages }}</li>
+      <li><span>Population: </span>{{ country?.population | number }}</li>
+    </ul></app-country-card
+  >
 </div>

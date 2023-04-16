@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, Component, Input } from '@angular/core';
 import { Country } from 'src/app/model/country';
 
 @Component({
@@ -6,20 +6,16 @@ import { Country } from 'src/app/model/country';
   templateUrl: './country-card.component.html',
   styleUrls: ['./country-card.component.scss']
 })
-export class CountryCardComponent implements OnChanges {
+export class CountryCardComponent implements AfterContentInit, AfterContentChecked {
 
   @Input()
   public country?: Country;
 
-  public formattedLanguages: string = '';
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['country']?.currentValue !== changes['country'].previousValue) {
-      this.formatLanguages();
-    };
+  public ngAfterContentInit(): void {
+    console.log('AfterContentInit - initialized projected content in CountryCardComponent');
   }
 
-  private formatLanguages(): void {
-    this.formattedLanguages = Object.values(this.country?.languages || {}).join(', ').trimEnd();
+  public ngAfterContentChecked(): void {
+    console.log('AfterContentChecked - checked projected content in CountryCardComponent and checked its changes');
   }
 }

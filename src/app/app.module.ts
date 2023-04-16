@@ -14,6 +14,7 @@ import { CountryCardComponent } from './components/country-card/country-card.com
 import { CountriesComponent } from './components/countries/countries.component';
 import { CountryInfoDirective } from './directives/country-info.directive';
 import { CountryCardDirective } from './directives/country-card.directive';
+import { LanguagesPipe } from './pipes/languages.pipe';
 
 export const DEFAULT_FILTERS = new InjectionToken<string>('defaultFilters');
 const defaultFilters: string[] = [
@@ -32,6 +33,7 @@ const defaultFilters: string[] = [
     CountriesComponent,
     CountryInfoDirective,
     CountryCardDirective,
+    LanguagesPipe,
   ],
   imports: [
     BrowserModule,
